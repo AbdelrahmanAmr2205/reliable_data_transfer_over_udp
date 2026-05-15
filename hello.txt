@@ -1,0 +1,16 @@
+Hello from the RDT HTTP Server!
+
+This plain-text file was served over a custom TCP-over-UDP stack
+built entirely in Python user space for CC451 Lab 4.
+
+Every byte of this response went through:
+  1. HTTP/1.0 response encoding
+  2. Fragmentation into 1400-byte segments
+  3. Checksum calculation (RFC 1071)
+  4. Stop-and-wait transmission over UDP
+  5. Sequence number tracking
+  6. ACK / retransmit cycle
+  7. PSH flag to signal end-of-stream
+  8. FIN/ACK teardown
+
+Alexandria University — Spring 2026

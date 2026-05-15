@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About — RDT HTTP Server</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0;
+           max-width: 700px; margin: 60px auto; padding: 0 24px; }
+    h1 { color: #38b2ac; margin-bottom: 8px; }
+    h2 { color: #a0aec0; font-size: 1rem; font-weight: 400; margin-bottom: 32px; }
+    section { margin-bottom: 28px; }
+    section h3 { color: #f7fafc; margin-bottom: 8px; font-size: 1rem; }
+    p, li { color: #a0aec0; line-height: 1.7; }
+    ul { padding-left: 20px; }
+    a { color: #38b2ac; }
+    code { background: #1a1d2e; padding: 2px 6px; border-radius: 4px;
+           font-family: 'Courier New', monospace; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+  <h1>About This Server</h1>
+  <h2>Alexandria University — CC451 Computer Networks Lab 4, Spring 2026</h2>
+
+  <section>
+    <h3>What is this?</h3>
+    <p>
+      A hand-built HTTP/1.0 server that does not use the OS TCP stack.
+      Instead it runs a custom <code>RDTSocket</code> class over raw UDP that
+      reimplements the core TCP mechanisms in Python user space.
+    </p>
+  </section>
+
+  <section>
+    <h3>Implemented features</h3>
+    <ul>
+      <li>Three-way handshake — SYN → SYNACK → ACK</li>
+      <li>Stop-and-Wait reliable data transfer (RFC 1122 §3.4.1)</li>
+      <li>16-bit ones-complement checksum (RFC 1071)</li>
+      <li>Packet-loss simulation — configurable drop probability</li>
+      <li>Packet-corruption simulation — random bit-flip</li>
+      <li>Retransmission on timeout</li>
+      <li>Duplicate-segment detection and re-ACK</li>
+      <li>Sequence numbers and cumulative acknowledgements</li>
+      <li>FIN / ACK connection teardown</li>
+      <li>HTTP/1.0 GET and POST methods</li>
+      <li>200 OK, 201 Created, 403 Forbidden, 404 Not Found, 405, 500</li>
+      <li>TCP ↔ RDT bridge so real browsers can connect</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Files</h3>
+    <ul>
+      <li><code>packet.py</code> — wire format, flags, checksum</li>
+      <li><code>rdt_socket.py</code> — reliable transport over UDP</li>
+      <li><code>http_handler.py</code> — HTTP/1.0 request &amp; response parsing</li>
+      <li><code>http_server.py</code> — HTTP application server</li>
+      <li><code>http_client.py</code> — HTTP application client</li>
+      <li><code>tcp_bridge.py</code> — TCP ↔ RDT proxy for browser access</li>
+      <li><code>tests.py</code> — test suite (packet, RDT, HTTP layers)</li>
+    </ul>
+  </section>
+
+  <p><a href="/">← Back to home</a></p>
+</body>
+</html>

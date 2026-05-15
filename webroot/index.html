@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RDT HTTP Server</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: #1a1d2e;
+      border: 1px solid #2d3748;
+      border-radius: 12px;
+      padding: 48px 56px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .badge {
+      display: inline-block;
+      background: #38b2ac22;
+      color: #38b2ac;
+      border: 1px solid #38b2ac44;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f7fafc;
+      margin-bottom: 12px;
+    }
+    h1 span { color: #38b2ac; }
+    p { color: #a0aec0; line-height: 1.7; margin-bottom: 24px; }
+    .stack {
+      background: #0f1117;
+      border: 1px solid #2d3748;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+    }
+    .stack .layer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      border-bottom: 1px solid #2d374844;
+      color: #a0aec0;
+    }
+    .stack .layer:last-child { border-bottom: none; }
+    .stack .layer .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green  { background: #48bb78; }
+    .dot-teal   { background: #38b2ac; }
+    .dot-blue   { background: #4299e1; }
+    .dot-purple { background: #9f7aea; }
+    .links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .links a {
+      display: inline-block;
+      background: #38b2ac;
+      color: #0f1117;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+    .links a:hover { background: #2c9e98; }
+    .links a.ghost {
+      background: transparent;
+      color: #38b2ac;
+      border: 1px solid #38b2ac44;
+    }
+    .links a.ghost:hover { background: #38b2ac11; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">CC451 — Networks Lab 4</div>
+    <h1>RDT / <span>HTTP Server</span></h1>
+    <p>
+      This page is being served over a custom reliable transport protocol
+      built on top of raw UDP — simulating TCP handshakes, checksums,
+      stop-and-wait, retransmission, and FIN teardown entirely in user space.
+    </p>
+
+    <div class="stack">
+      <div class="layer"><span class="dot dot-green"></span>HTTP/1.0 Application Layer</div>
+      <div class="layer"><span class="dot dot-teal"></span>RDTSocket — Stop-and-Wait + Checksums</div>
+      <div class="layer"><span class="dot dot-blue"></span>Packet — Custom Header (SYN/ACK/FIN/PSH)</div>
+      <div class="layer"><span class="dot dot-purple"></span>UDP — Python socket.SOCK_DGRAM</div>
+    </div>
+
+    <div class="links">
+      <a href="/about.html">About</a>
+      <a href="/hello.txt" class="ghost">hello.txt</a>
+    </div>
+  </div>
+</body>
+</html>
